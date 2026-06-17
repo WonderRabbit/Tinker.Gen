@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wonderrabbit.dev/tinker/checkpoint.schema.json",
+  "title": "Tinker checkpoint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "previewId", "templateId", "manifestHash", "actionHashes"],
+  "properties": {
+    "schemaVersion": { "const": "tinker.checkpoint.v1" },
+    "previewId": { "type": "string", "minLength": 1 },
+    "templateId": { "const": "component-scaffold" },
+    "manifestHash": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "actionHashes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "minLength": 64, "maxLength": 64 }
+        }
+      }
+    }
+  }
+}

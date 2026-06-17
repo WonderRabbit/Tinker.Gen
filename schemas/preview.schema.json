@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wonderrabbit.dev/tinker/preview.schema.json",
+  "title": "Tinker preview",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "previewId", "templateId", "manifestHash", "actions"],
+  "properties": {
+    "schemaVersion": { "const": "tinker.preview.v1" },
+    "previewId": { "type": "string", "minLength": 1 },
+    "templateId": { "const": "component-scaffold" },
+    "manifestHash": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "templateId", "path", "content", "sha256", "sourceRefs"],
+        "properties": {
+          "kind": { "const": "create" },
+          "templateId": { "const": "component-scaffold" },
+          "path": { "type": "string", "minLength": 1 },
+          "content": { "type": "string" },
+          "sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+          "sourceRefs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["path", "kind"],
+              "properties": {
+                "path": { "type": "string", "minLength": 1 },
+                "kind": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

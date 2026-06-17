@@ -1,0 +1,15 @@
+.DS_Store
+node_modules/
+dist/
+dist-test/
+coverage/
+.tinker/
+.tinker-test/
+.tinker-test-*/
+.codegraph/
+custom-generated/
+
+.omo/**
+!.omo/
+!.omo/plans/
+!.omo/plans/*.md

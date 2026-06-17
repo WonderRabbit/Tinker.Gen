@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "tinker.template-manifest.v1",
+  "template": {
+    "id": "component-scaffold",
+    "version": "1.0.0"
+  },
+  "language": "typescript",
+  "layers": ["component"],
+  "component": {
+    "name": "sample-widget",
+    "exportName": "SampleWidget",
+    "description": "Sample generated component"
+  },
+  "output": {
+    "root": ".tinker/generated"
+  }
+}

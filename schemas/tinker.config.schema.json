@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wonderrabbit.dev/tinker/config.schema.json",
+  "title": "Tinker config",
+  "type": "object",
+  "properties": {
+    "schemaVersion": { "const": "tinker.config.v1" },
+    "analysis": {
+      "type": "object",
+      "properties": {
+        "provider": { "enum": ["builtin", "codegraph"] },
+        "codegraph": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean", "default": false },
+            "command": { "const": "codegraph" },
+            "timeoutMs": { "type": "integer", "minimum": 1, "default": 10000 },
+            "maxFiles": { "type": "integer", "minimum": 1, "default": 20 },
+            "projectPath": { "type": "string", "minLength": 1, "default": "." },
+            "autoInit": { "const": false },
+            "preferMcp": { "const": false }
+          }
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "properties": { "directory": { "type": "string", "minLength": 1, "default": ".tinker" } }
+    },
+    "generation": {
+      "type": "object",
+      "properties": { "defaultTemplate": { "const": "component-scaffold" } }
+    }
+  }
+}

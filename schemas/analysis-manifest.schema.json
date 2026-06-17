@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wonderrabbit.dev/tinker/analysis-manifest.schema.json",
+  "title": "Tinker analysis manifest",
+  "type": "object",
+  "required": ["schemaVersion", "inventoryPath", "diagnosticsPath", "providerId", "generatedAt"],
+  "properties": {
+    "schemaVersion": { "const": "tinker.analysis-manifest.v1" },
+    "inventoryPath": { "type": "string", "minLength": 1 },
+    "diagnosticsPath": { "type": "string", "minLength": 1 },
+    "providerId": { "type": "string", "minLength": 1 },
+    "generatedAt": { "type": "string", "minLength": 1 }
+  }
+}

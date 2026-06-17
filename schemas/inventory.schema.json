@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wonderrabbit.dev/tinker/inventory.schema.json",
+  "title": "Tinker inventory",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "providerId",
+    "providerVersion",
+    "artifactSchemaVersion",
+    "command",
+    "cwd",
+    "projectPath",
+    "timestamp",
+    "indexed",
+    "diagnostics",
+    "sourceRefs",
+    "files",
+    "languageCounts",
+    "packageManifests",
+    "importGraph"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "tinker.inventory.v1" },
+    "providerId": { "type": "string", "minLength": 1 },
+    "providerVersion": { "type": "string", "minLength": 1 },
+    "artifactSchemaVersion": { "const": "tinker.analysis-artifacts.v1" },
+    "command": { "type": "string", "minLength": 1 },
+    "cwd": { "type": "string", "minLength": 1 },
+    "projectPath": { "type": "string", "minLength": 1 },
+    "timestamp": { "type": "string", "minLength": 1 },
+    "indexed": {
+      "type": "object",
+      "required": ["fileCount"],
+      "additionalProperties": false,
+      "properties": {
+        "fileCount": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["level", "code", "message"],
+        "additionalProperties": false,
+        "properties": {
+          "level": { "enum": ["info", "warning", "error"] },
+          "code": { "type": "string", "minLength": 1 },
+          "message": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sourceRefs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "kind"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "kind": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "language", "bytes"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "language": { "type": "string", "minLength": 1 },
+          "bytes": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "languageCounts": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "packageManifests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "name": { "type": "string" },
+          "version": { "type": "string" },
+          "type": { "type": "string" }
+        }
+      }
+    },
+    "importGraph": {
+      "type": "object",
+      "required": ["nodes", "edges"],
+      "additionalProperties": false,
+      "properties": {
+        "nodes": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["from", "to"],
+            "additionalProperties": false,
+            "properties": {
+              "from": { "type": "string", "minLength": 1 },
+              "to": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    }
+  }
+}
